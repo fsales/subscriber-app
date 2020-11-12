@@ -14,4 +14,5 @@ Utilizando
 - [X] Criação do Projeto
 - [X] Tela de Cadastro
 - [X] Configurando a Toolbar
-- [ ] Criando a Camada de Dados
+- [X] Criando a Camada de Dados
+- [X] Inserindo Subscriber no banco
