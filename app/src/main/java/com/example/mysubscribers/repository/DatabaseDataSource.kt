@@ -17,7 +17,7 @@ class DatabaseDataSource(
 
     override suspend fun updateSubscriber(id: Long, name: String, email: String) {
         val subscriber = SubscriberEntity(
-            id= id,
+            id = id,
             name = name,
             email = email
         )
@@ -33,6 +33,6 @@ class DatabaseDataSource(
     }
 
     override fun getAllSubscribers(): LiveData<List<SubscriberEntity>> {
-      return subscriberDAO.getAll()
+        return subscriberDAO.getAll()
     }
 }

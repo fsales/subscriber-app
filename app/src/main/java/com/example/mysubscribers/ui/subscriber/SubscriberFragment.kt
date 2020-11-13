@@ -19,10 +19,11 @@ import kotlinx.android.synthetic.main.subscriber_fragment.*
 class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
 
     private val viewModel: SubscriberViewModel by viewModels {
-        object : ViewModelProvider.Factory{
+        object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
 
-                val subscriberDAO: SubscriberDAO = AppDatabase.getInstance(requireContext()).subscriberDao
+                val subscriberDAO: SubscriberDAO =
+                    AppDatabase.getInstance(requireContext()).subscriberDao
                 val repository: SubscriberRepository = DatabaseDataSource(subscriberDAO)
 
                 return SubscriberViewModel(repository) as T
@@ -39,9 +40,9 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
 
 
     private fun observeEvents() {
-        viewModel.subscriberStateEventData.observe(viewLifecycleOwner){ subscriberState ->
-            when(subscriberState){
-                is SubscriberViewModel.SubscriberState.Inserted ->{
+        viewModel.subscriberStateEventData.observe(viewLifecycleOwner) { subscriberState ->
+            when (subscriberState) {
+                is SubscriberViewModel.SubscriberState.Inserted -> {
                     // limpar campos
                     clearFields()
 
@@ -51,7 +52,7 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
             }
         }
 
-        viewModel.messageEventData.observe(viewLifecycleOwner){ stringResId ->
+        viewModel.messageEventData.observe(viewLifecycleOwner) { stringResId ->
             Snackbar.make(requireView(), stringResId, Snackbar.LENGTH_LONG).show()
         }
     }
@@ -63,7 +64,7 @@ class SubscriberFragment : Fragment(R.layout.subscriber_fragment) {
 
     private fun hideKeyboard() {
         val parentActivity = requireActivity()
-        if(parentActivity is AppCompatActivity){
+        if (parentActivity is AppCompatActivity) {
             parentActivity.hideKeyboard()
         }
     }

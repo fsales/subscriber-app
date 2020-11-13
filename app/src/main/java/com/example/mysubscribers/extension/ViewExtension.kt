@@ -6,7 +6,7 @@ import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 
 
-fun AppCompatActivity.hideKeyboard(){
+fun AppCompatActivity.hideKeyboard() {
     val view = this.currentFocus
     view?.let {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager

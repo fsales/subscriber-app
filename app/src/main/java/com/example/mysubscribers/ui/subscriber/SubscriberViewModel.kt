@@ -9,11 +9,11 @@ import com.example.mysubscribers.R
 import com.example.mysubscribers.repository.SubscriberRepository
 import kotlinx.coroutines.launch
 
-class SubscriberViewModel (
+class SubscriberViewModel(
     private val subscriberRepository: SubscriberRepository
 ) : ViewModel() {
 
-    private  val _subscriverStateEventData = MutableLiveData<SubscriberState>()
+    private val _subscriverStateEventData = MutableLiveData<SubscriberState>()
     val subscriberStateEventData: LiveData<SubscriberState>
         get() = _subscriverStateEventData
 
@@ -22,25 +22,25 @@ class SubscriberViewModel (
         get() = _messageEventData
 
 
-    fun  addSubscriber(name: String, email: String) =  viewModelScope.launch {
+    fun addSubscriber(name: String, email: String) = viewModelScope.launch {
         try {
             val id = subscriberRepository.insertSubscriber(name, email)
-            if (id > 0){
+            if (id > 0) {
                 _subscriverStateEventData.value = SubscriberState.Inserted
                 _messageEventData.value = R.string.subscriber_inserted_successfully
             }
-        }catch (ex: Exception){
+        } catch (ex: Exception) {
             _messageEventData.value = R.string.subscriber_error_to_insert
             Log.e(TAG, ex.toString())
         }
     }
 
-    sealed class SubscriberState{
+    sealed class SubscriberState {
         object Inserted : SubscriberState()
     }
 
-    companion object{
-        private  val TAG = SubscriberViewModel::class.java.simpleName
+    companion object {
+        private val TAG = SubscriberViewModel::class.java.simpleName
     }
 
 }

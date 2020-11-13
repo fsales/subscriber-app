@@ -13,13 +13,13 @@ abstract class AppDatabase : RoomDatabase() {
     abstract val subscriberDao: SubscriberDAO
 
     companion object {
-        private  var INSTANCE: AppDatabase? = null
+        private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase {
             synchronized(this) {
                 var instance: AppDatabase? = INSTANCE
 
-                if (instance == null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context,
                         AppDatabase::class.java,
