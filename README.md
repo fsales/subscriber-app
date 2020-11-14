@@ -16,3 +16,7 @@ Utilizando
 - [X] Configurando a Toolbar
 - [X] Criando a Camada de Dados
 - [X] Inserindo Subscriber no banco
+- [X] Listagem de Subscribers
+- [X] RecyclerView Adapter
+- [X] Listando Subscribers
+- [X] Navegando para tela de cadastro
