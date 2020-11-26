@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.mysubscribers.R
 import com.example.mysubscribers.data.db.AppDatabase
 import com.example.mysubscribers.data.db.dao.SubscriberDAO
-import com.example.mysubscribers.data.db.entity.SubscriberEntity
+import com.example.mysubscribers.extension.navigateWithAnimations
 import com.example.mysubscribers.repository.DatabaseDataSource
 import com.example.mysubscribers.repository.SubscriberRepository
-import com.example.mysubscribers.ui.subscriber.SubscriberViewModel
 import kotlinx.android.synthetic.main.subscriber_list_fragment.*
 
 class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
@@ -40,11 +38,11 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
     }
 
     private fun observerViewModelEvents() {
-        viewModel.allSubscriberEvent.observe(viewLifecycleOwner){ allSubscribers ->
+        viewModel.allSubscribersEvent.observe(viewLifecycleOwner) { allSubscribers ->
 
             val subscriberListAdapter = SubscriberListAdapter(allSubscribers)
 
-            recycler_subscribers.run{
+            recycler_subscribers.run {
                 setHasFixedSize(true)
                 adapter = subscriberListAdapter
             }
@@ -52,9 +50,14 @@ class SubscriberListFragment : Fragment(R.layout.subscriber_list_fragment) {
 
     }
 
-    private fun configureViewListeners(){
+    override fun onResume() {
+        super.onResume()
+        viewModel.getSubscribers()
+    }
+
+    private fun configureViewListeners() {
         fabAddSubscriber.setOnClickListener {
-            findNavController().navigate(R.id.subscriberFragment)
+            findNavController().navigateWithAnimations(R.id.subscriberFragment)
         }
     }
 

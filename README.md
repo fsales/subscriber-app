@@ -20,3 +20,5 @@ Utilizando
 - [X] RecyclerView Adapter
 - [X] Listando Subscribers
 - [X] Navegando para tela de cadastro
+- [X] Botão voltar customizável
+- [X] Ajuste no fluxo de inserção
